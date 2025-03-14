@@ -122,6 +122,7 @@ class FailedJobsController extends Controller
         $job->retried_by = collect(! is_null($job->retried_by) ? json_decode($job->retried_by) : [])
                     ->sortByDesc('retried_at')->values();
 
+        unset($job->payload->data);
         return $job;
     }
 }
